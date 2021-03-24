@@ -18,7 +18,26 @@ class NamesTableViewContoller: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    @IBAction func onAddButtonTapped(_ sender: UIBarButtonItem)
+    {
+        let alert = UIAlertController(title: "Add a Name", message: nil, preferredStyle: .alert)
+        var nameField: UITextField?
+        alert.addTextField{ (textField) in
+            nameField = textField
+            nameField?.placeholder = "Name"
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        let confirmAction = UIAlertAction(title: "Ok", style: .default) {(action) in if let name = nameField?.text {self.names.append(name)
+            self.tableView.reloadData()
+            
+        }
+    }
+alert.addAction(confirmAction);present(alert, animated: true, completion: nil)
+}
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
